@@ -1,0 +1,6 @@
+.strength-label-default {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 2px 5px;
+    background-color: rgb(141, 228, 255);
+}

@@ -12,7 +12,7 @@
 
     function showLowLabel() {
         label.classList.add(LOW_LEVEL_CLASS);
-        label.classList.remove(MIDDLE_LEVEL_CLASS);
+        label.classList.remove(MIDDLE_LEVEL_CLASS, HIGH_LEVEL_CLASS);
     }
 
     function showMiddleLabel() {
@@ -34,13 +34,29 @@
             showCurrentValue(this.value);
             if (this.value < 33) {
                 showLowLabel();
-            } else if (this.value < 77) {
+            } else if (this.value < 67) {
                 showMiddleLabel();
             } else {
                 showHighLabel();
             }
         });
     }
-    
+
+    function resetAddons() {
+        showCurrentValue(30);
+        showLowLabel();
+    }
+
+    function resetHandler() {
+        var reset = document.querySelector('[type="reset"]');
+        reset.addEventListener('click', function(event) {
+            resetAddons();
+        });
+    }
+
     strengthLevelHandler();
+    resetHandler();
+    
+    window.resetAddons = resetAddons;
+
 })();

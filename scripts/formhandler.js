@@ -27,6 +27,7 @@
             console.log(data);
             fn(data);
             this.reset();
+            resetAddons();
             this.elements[0].focus();
         });
     }

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
     <title>CoffeeRun</title>
 </head>
 <body class="container">
@@ -51,18 +50,27 @@
                     </div>
                     <div class="form-group">
                         <label for="strengthLevel">Caffeine Rating 
-                            <span class="strength-label-default" data-strength="label">30</span></label>
-                        <input name="strength" id="strengthLevel" type="range" value="30" data-strength="level">
+                            <span class="label label-primary" style="margin-left: 5px" data-coffee-order="label">30</span></label>
+                        <input name="strength" id="strengthLevel" type="range" value="30" data-coffee-order="level">
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
                     <button type="reset" class="btn btn-default">Reset</button>
                 </form><!-- /. form -->
             </div>
         </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h4>Pending Orders:</h4>
+                <div data-coffee-order="checklist">
+                    <!-- List of orders here -->
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- JS Files here -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" charset="utf-8"></script>
+    <script src="scripts/strength.js"></script>
     <script src="scripts/formhandler.js"></script>
     <script src="scripts/datastore.js"></script>
     <script src="scripts/truck.js"></script>

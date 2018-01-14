@@ -1,11 +1,16 @@
 (function() {
-    
+    'use strict';
+
     var STRENGHT_LEVEL_SELECTOR = '[data-coffee-order="level"]';
     var STRENGHT_LABEL_SELECTOR =  '[data-coffee-order="label"]';
 
     var LOW_LEVEL_CLASS = 'label-primary';
     var MIDDLE_LEVEL_CLASS = 'label-warning';
     var HIGH_LEVEL_CLASS = 'label-danger';
+
+    var FIRST_LEVEL_VALUE = 33;
+    var SECOND_LEVEL_VALUE = 67;
+    var DEFAULT_VALUE = 30;
 
     var level = document.querySelector(STRENGHT_LEVEL_SELECTOR);
     var label = document.querySelector(STRENGHT_LABEL_SELECTOR);
@@ -32,9 +37,9 @@
     function strengthLevelHandler() {
         level.addEventListener('change', function() {
             showCurrentValue(this.value);
-            if (this.value < 33) {
+            if (this.value < FIRST_LEVEL_VALUE) {
                 showLowLabel();
-            } else if (this.value < 67) {
+            } else if (this.value < SECOND_LEVEL_VALUE) {
                 showMiddleLabel();
             } else {
                 showHighLabel();
@@ -43,11 +48,11 @@
     }
 
     function resetAddons() {
-        showCurrentValue(30);
+        showCurrentValue(DEFAULT_VALUE);
         showLowLabel();
     }
 
-    function resetHandler() {
+    function resetButtonHandler() {
         var reset = document.querySelector('[type="reset"]');
         reset.addEventListener('click', function(event) {
             resetAddons();
@@ -55,7 +60,7 @@
     }
 
     strengthLevelHandler();
-    resetHandler();
+    resetButtonHandler();
     
     window.resetAddons = resetAddons;
 

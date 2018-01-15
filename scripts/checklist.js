@@ -13,6 +13,16 @@
         }
     }
 
+    CheckList.prototype.addClickHandler = function (fn) {
+        this.$element.on('click', 'input', function (event) {
+            var email = event.target.value;
+            fn(email);
+            setTimeout(function() {
+                this.removeRow(email);
+            }.bind(this), 1000);
+        }.bind(this));
+    }
+
     CheckList.prototype.addRow = function(coffeOrder) {
         this.removeRow(coffeOrder.emailAddress);
         var rowElement = new Row(coffeOrder);
@@ -51,14 +61,14 @@
         $div.append($label);
 
         this.$element = $div;
-    }
 
-    // <div data-coffee-order="checkbox" class="checkbox">
-    //     <label>
-    //         <input type="checkbox" value="chewie@rrwwwgg.com">
-    //                 tall mocha iced coffee, (chewie@rrwwwgg.com) [39x]
-    //         </label>
-    // </div>
+        // <div data-coffee-order="checkbox" class="checkbox">
+        //     <label>
+        //         <input type="checkbox" value="chewie@rrwwwgg.com">
+        //                 tall mocha iced coffee, (chewie@rrwwwgg.com) [39x]
+        //     </label>
+        // </div>
+    }
 
     App.CheckList = CheckList;
     window.App = App;

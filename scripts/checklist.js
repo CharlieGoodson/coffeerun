@@ -16,10 +16,12 @@
     CheckList.prototype.addClickHandler = function (fn) {
         this.$element.on('click', 'input', function (event) {
             var email = event.target.value;
-            fn(email);
-            setTimeout(function() {
-                this.removeRow(email);
-            }.bind(this), 1000);
+            fn(email)
+            .then(function() {
+                setTimeout(function() {
+                    this.removeRow(email);
+                }.bind(this), 1000);
+            }.bind(this));
         }.bind(this));
     }
 

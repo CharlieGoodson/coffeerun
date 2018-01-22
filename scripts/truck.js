@@ -20,22 +20,28 @@
     // метод для создания нового заказа
     Truck.prototype.createOrder = function(order) {
         console.log('Adding order for ' + order.emailAddress);
-        this.db.add(order.emailAddress, order);
+        return this.db.add(order.emailAddress, order);
     }
 
     // метод который удаляет указанный заказ из базы после доставки
     Truck.prototype.deliverOrder = function(customerId) {
         console.log('Delivering order for ' + customerId);
-        this.db.remove(customerId);
+        return this.db.remove(customerId);
     }
 
     // выводим все имеющиеся в наличии заказы
-    Truck.prototype.printOrders = function() {
-        var customerIdArray = Object.keys(this.db.getAll());
-        console.log('Truck #' + this.truckId + ' has pending orders:');
-        customerIdArray.forEach(function(id) {
-            console.log(this.db.get(id));
-        }.bind(this));
+    Truck.prototype.printOrders = function(printFn) {
+        return this.db.getAll()
+            .then(function(orders) {
+                var customerIdArray = Object.keys(orders);
+                console.log('Truck #' + this.truckId + ' has pending orders:');
+                customerIdArray.forEach(function(id) {
+                    console.log(orders[id]);
+                    if (printFn) {
+                        printFn(orders[id]);
+                    }
+                }.bind(this));
+            }.bind(this));
     }
 
     // добавляем наш класс в пространство имен App
